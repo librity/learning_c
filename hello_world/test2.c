@@ -2,6 +2,7 @@
 
 int main()
 {
-  printf("Hello world\n");
+  int a = 40 + 2;
+  printf("%d\n", a);
   return 0;
 }
