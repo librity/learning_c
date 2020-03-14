@@ -1,0 +1,5 @@
+myprogram.exe: myprogram.o
+    $(CC) -o myprogram.exe myprogram.o
+
+myprogram.o: myprogram.cpp
+    $(CC) -c myprogram.cpp
