@@ -37,4 +37,4 @@ static_librarytest: librarytest.c
 	$(CC) $(CFLAGS) -o $@ $^ -L. -lmystaticcode
 
 clean:
-	rm *.o *.so $(BINS)
+	rm -rf *.o *.so *.dSYM $(BINS)
