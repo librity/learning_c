@@ -9,6 +9,7 @@ Clang Cheat Sheets:
 - https://sites.ualberta.ca/~ygu/courses/geoph624/codes/C.CheatSheet.pdf
 - https://www.rankred.com/useful-c-cheat-sheets/
 - https://courses.cs.washington.edu/courses/cse351/14sp/sections/1/Cheatsheet-c.pdf
+- https://www.tutorialspoint.com/cprogramming
 
 Compiler&Makefile Cheat Sheets:
 - https://www.lzone.de/cheat-sheet/GCC
@@ -20,6 +21,14 @@ Compiler&Makefile Cheat Sheets:
 - https://stackoverflow.com/questions/14412919/make-no-targets-specified-and-no-makefile-found-stop
 - http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
 - https://www.gnu.org/software/make/manual/make.html
+
+OOP in C:
+- https://stackoverflow.com/questions/3241932/is-the-c-programming-language-object-oriented
+- https://www.eventhelix.com/realtimemantra/basics/object_oriented_programming_in_c.htm
+- https://gist.github.com/InNoHurryToCode/d7a419a649b9d8081ba09f70d87ec449
+- https://github.com/shichao-an/ooc
+- https://duckduckgo.com/?q=object+oriented+c
+- https://stackoverflow.com/questions/415452/object-orientation-in-c
 
 Bash Cheat Sheets:
 - https://www.linuxtrainingacademy.com/linux-commands-cheat-sheet/
@@ -53,7 +62,11 @@ colon **':'**, and every tabbed line below it a line of bash code that gets is
 when the make runs said target. You can also assign varibles with the **'='** 
 sign and call them with $(<variable_name>). These ate stored in files called 
 'makefile' or 'Makefile', and stem at the projects's root. Targets can also call
-other targets as needed.
+other targets by calling them in the dependencies. Automatic variables serve to
+shorten the code and eliminate repetition. Some automatic variables are:
+- $@ = target name
+- $^ = target dependencies
+- https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
 Example Makefile:
 ```Makefile
