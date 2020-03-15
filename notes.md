@@ -10,6 +10,7 @@ Clang Cheat Sheets:
 - https://www.rankred.com/useful-c-cheat-sheets/
 - https://courses.cs.washington.edu/courses/cse351/14sp/sections/1/Cheatsheet-c.pdf
 - https://www.tutorialspoint.com/cprogramming
+- https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference
 
 Compiler&Makefile Cheat Sheets:
 - https://www.lzone.de/cheat-sheet/GCC
@@ -88,3 +89,11 @@ find a linux distro without make installed. Other notable build automation
 softwares are: ant, rake, maven, **Chef (used a lot for ruby apps in AWS instances)**,
 and many many more:
 - https://en.wikipedia.org/wiki/List_of_build_automation_software
+
+# POSIX Reference/unistd.h
+
+Functions: *close*, *exec*, *fork*, *open*, *read*, *select*, *sleep*, *swab* & **write**.
+
+Info => https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
+
+Used by libft => https://github.com/R4meau/libft.git

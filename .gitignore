@@ -57,6 +57,10 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Temporary CodeRunner Files
+*/tempCodeRunnerFile.c
+*/tempCodeRunnerFile
+
 ### From PostgresSQL Repo ###
 # Global excludes across all subdirectories
 *.o
