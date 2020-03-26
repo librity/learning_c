@@ -35,9 +35,9 @@ Bash Cheat Sheets:
 - https://www.linuxtrainingacademy.com/linux-commands-cheat-sheet/
 
 Cool List of OpenSource C Libs
-==> https://en.cppreference.com/w/c/links/libs
+- https://en.cppreference.com/w/c/links/libs
 
-# GCC
+## GCC
 
 - To compile a .c file into a binary executable with the same name we use:
 ```bash
@@ -54,7 +54,11 @@ $ ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
 $ objdump -t <binaryname> | rg <function_name>
 ```
 
-# But what is make? And why is it important?!?
+Information about different executable binary formats and where they're used.
+
+=> https://en.wikipedia.org/wiki/Comparison_of_executable_file_formats
+
+## But what is make? And why is it important?!?
 
 Make is a build system that easily allows you to automatize the compilation of
 your applications and libraries. It works with **targets** (named bash scripts),
@@ -67,7 +71,8 @@ other targets by calling them in the dependencies. Automatic variables serve to
 shorten the code and eliminate repetition. Some automatic variables are:
 - $@ = target name
 - $^ = target dependencies
-- https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
+
+=> https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 
 Example Makefile:
 ```Makefile
@@ -88,12 +93,136 @@ The greatest advantage of make is that it's universal: I'd be hard pressed to
 find a linux distro without make installed. Other notable build automation
 softwares are: ant, rake, maven, **Chef (used a lot for ruby apps in AWS instances)**,
 and many many more:
-- https://en.wikipedia.org/wiki/List_of_build_automation_software
 
-# POSIX Reference/unistd.h
+=> https://en.wikipedia.org/wiki/List_of_build_automation_software
 
-Functions: *close*, *exec*, *fork*, *open*, *read*, *select*, *sleep*, *swab* & **write**.
+## HEXDUMP
 
-Info => https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
+We can read binaries as ASCII with this bash command (cats output to a file).
+```bash
+$ hexdump  -C <bin_name> > <bin_name>.hxdmp
+```
+
+## assembler.out
+
+Also known as a.o, the old-school format of executable code in an UNIX-like sys.
+Although most modern compilers don't use this format, they still output
+intermediary files with the .o extension due to tradition (the true format of
+the executable depending on the OS it is being compiled in).
+
+=> https://en.wikipedia.org/wiki/A.out
+
+## ELF: Executable and Linkable Format
+
+Subsequent replacement of the .o/.out format in UNIX-like systems. If we compile
+C code in a moder Linux machine it will probably output with this format.
+Extremely versatile and extensible, with different endiannesses and address
+sizes so to include as many
+[Instruction Set Architectures](https://en.wikipedia.org/wiki/Instruction_set_architecture)
+as possible.
+
+=> https://en.wikipedia.org/wiki/Executable_and_Linkable_Format
+
+## Mach-Object
+
+ELF equivalent for MacOS, utilizing the Mach kernel. GCC outputs this on MacOS by
+default. We can check what a file seems to be with the `file` bash command.
+
+```bash
+$ file <file_name>.c
+file_name.c: c program text, ASCII text
+
+$ file <file_name>.o
+file_name.o: Mach-O 64-bit object x86_64
+
+$ file <file_name>.so
+file_name.so: Mach-O 64-bit dynamically linked shared library x86_64
+
+$ file <file_name>.a
+file_name.a: current ar archive random library
+
+$ file <file_name>
+file_name: Mach-O 64-bit executable x86_64
+```
+
+=> https://en.wikipedia.org/wiki/Mach-O
+
+## POSIX Reference/unistd.h
+
+Functions: *close*, *exec*, *fork*, *open*, *read*, *select*, *sleep*, *swab* &
+**write**.
+
+Info 
+=> https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/unistd.h
 
 Used by libft => https://github.com/R4meau/libft.git
+
+## Unix file types
+
+- **Dircetory**: Store other files and organize permissions. We can create them
+with `$ mkdir <directory_name>`.
+
+  `drwxr-xr-x 26 root root 4096 Sep 22 09:29 /`
+
+- **Regular file**: Contain binary data. We can create them with
+`$ touch <file_name>`.
+
+  `-rw-r--r-- ... /etc/passwd`
+
+- **Symbolic link**: Reference to another file, usually in another location. We
+can create them with `$ ln -s /path/to/file /path/to/symlink`.
+
+  `lrwxrwxrwx ... name -> /path/to/file`
+
+- **FIFO/Named pipe**: Pipes send the output of a process to input of another.
+Processes from the same user and within the same process-space use unnamed pipes
+**`|`** to comunicate with one another. Named pipes are used when processes from
+different users and process-spaces need to communicate with eachother. Named
+pipes are created as files with the **`$ mkfifo <pipe_name>`**, and can exist
+anywhere in the file system.
+
+  `prw-rw---- ... mypipe`
+
+- **Socket**: While named and unnamed pipes only allow for one-way i/o flow,
+sockets allow by-directional interaction between processes and are fully
+duplex-capable. They also allow for the exchange of
+[File descriptors](https://en.wikipedia.org/wiki/File_descriptor) (like stdin,
+stdout and stderr). We can create them with **netcat**
+`$ nc -k -l <listening_port> > <file_name>`
+
+  `srwxrwxrwx /tmp/.X11-unix/X0`
+
+- **Device file**: In UNIX-like systems everything except network devices
+are handled by files. Whenever we mount and access storage hardware we are
+interacting with either a *block* or a *character* device file. Block devices
+are randomly accessible (through a buffer), while character devices provide 
+either serial stream of input or accept a serial stream of output (un-buffered).
+Creating one of these is pretty involved, as we must first have some sort of
+storage space we wish to encapsulate, and format it accordingly.
+
+  ```bash
+  brw-rw---- ... /dev/sda
+  crw------- ... /dev/null
+  ```
+
+- **Door**: Communication between a client and a server, though only Solaris has
+this, and it's not available on Linux.
+
+  `Dr--r--r-- ... name_service_door`
+
+=> https://en.wikipedia.org/wiki/Unix_file_types
+
+## GDB: The GNU Project Debugger
+
+An extremely useful tool that gives you full control and analysis over an 
+executable's runtime.
+
+=> https://www.gnu.org/software/gdb/
+=> https://en.wikipedia.org/wiki/GNU_Debugger
+
+## NSA Ghidra
+
+A reverse-engineering toolbox with a forensics/security focus. Great for
+analyzing executables as assembly code. This one has a GUI.
+
+=> https://ghidra-sre.org/
