@@ -48,7 +48,7 @@ Cool List of OpenSource C Libs
 - https://www.youtube.com/watch?v=ix5jPkxsr7M
 - https://www.youtube.com/playlist?list=PLGLfVvz_LVvSaXCpKS395wbCcmsmgRea7
 - http://www.newthinktank.com/
-
+- https://www.youtube.com/results?search_query=linux+kernel+source+code
 
 ## GCC
 

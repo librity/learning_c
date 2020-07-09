@@ -30,7 +30,7 @@ librarytest: librarytest.c libmycode.o
 
 runtime_librarytest: librarytest.c
 	$(CC) $(CFLAGS) -o $@ $^ -L. -lmycode
-# lmycode: the "l" stands for "lib", and the compiler expects taht all library
+# lmycode: the "l" stands for "lib", and the compiler expects that all library
 # file names start with "lib".
 
 static_librarytest: librarytest.c
