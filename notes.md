@@ -50,6 +50,27 @@ Cool List of OpenSource C Libs
 - http://www.newthinktank.com/
 - https://www.youtube.com/results?search_query=linux+kernel+source+code
 
+## [Norminnette](https://github.com/42Paris/norminette)
+
+42's standard format and style for C and Make source code. I really like it.
+
+1. Install
+
+```bash
+$ git clone https://github.com/42Paris/norminette.git ~/.norminette/
+$ cd ~/.norminette/
+$ bundle
+
+$ echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.bash_profile
+$ source ~/.bash_profile
+```
+
+2. Run
+
+```bash
+$ norminette
+```
+
 ## GCC
 
 - To compile a .c file into a binary executable with the same name we use:
