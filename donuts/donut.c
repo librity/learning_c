@@ -1,6 +1,7 @@
 // Source: https://www.a1k0n.net/2006/09/15/obfuscated-c-donut.html
 // compile with: gcc -o donut donut.c -lm
 // and it needs ANSI- or VT100-like emulation
+// clang -Wno-error=implicit-int -Wno-error=implicit-function-declaration -lm donut.c && ./a.out
 
              k;double sin()
          ,cos();main(){float A=
